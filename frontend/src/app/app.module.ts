@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,10 +13,10 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot([]),
     AppRoutingModule,
     PoModule,
-    PoTemplatesModule,
-    RouterModule.forRoot([])
+    PoTemplatesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
