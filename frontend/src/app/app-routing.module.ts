@@ -13,9 +13,8 @@ const routes: Routes = [
     component: ErroPageComponent,
   },
   {
-    path: 'produtos',
-    loadChildren: () =>
-      import('./produtos/produtos.module').then((m) => m.ProdutosModule),
+    path: 'produto',
+    loadChildren: () => import('./produto/produto.module').then((m) => m.ProdutoModule),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'erro', pathMatch: 'full' },
