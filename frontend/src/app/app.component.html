@@ -1,18 +1,5 @@
 <div class="po-wrapper-menu-panel">
-  <po-menu-panel
-    [p-menus]="menus" >
-  </po-menu-panel>
+  <po-menu-panel [p-menus]="menus"> </po-menu-panel>
 
-  <div class="po-p-2">
-    <po-page-default p-title="AppName">
-      <div class="po-row">
-        <div class="po-xl-6 po-lg-6 po-md-6 po-sm-6">
-          <p> AppName page </p>
-        </div>
-        <div class="po-xl-6 po-lg-6 po-md-6 po-sm-6">
-          <p> AppName page </p>
-        </div>
-      </div>
-    </po-page-default>
-  </div>
+  <router-outlet></router-outlet>
 </div>
