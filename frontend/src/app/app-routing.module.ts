@@ -1,27 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErroPageComponent } from './page/erro-page/erro-page.component';
-import { HomePageComponent } from './page/home-page/home-page.component';
+import { PAGE_CONFIG } from './page/page-module.config';
+import { PRODUCT_CONFIG } from './product/product-module.config';
+import { HttpStatusCodeEnum } from './shared/enum/http-status-code';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomePageComponent,
+    path: PAGE_CONFIG.path,
+    loadChildren: () => import('./page/page.module').then((m) => m.PageModule)
   },
   {
-    path: 'erro',
-    component: ErroPageComponent,
+    path: PRODUCT_CONFIG.path,
+    loadChildren: () => import('./product/product.module').then((m) => m.ProductModule)
   },
-  {
-    path: 'produto',
-    loadChildren: () => import('./produto/produto.module').then((m) => m.ProdutoModule),
-  },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'erro', pathMatch: 'full' },
+  { path: '', redirectTo: PAGE_CONFIG.path, pathMatch: 'full' },
+  { path: '**', redirectTo: `${PAGE_CONFIG.path}/erro/${HttpStatusCodeEnum.NotFound}`, pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

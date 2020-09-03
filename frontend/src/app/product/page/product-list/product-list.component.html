@@ -1,0 +1,16 @@
+<po-page-default p-title="Produtos">
+  <po-button
+    p-label="Novo Produto"
+    p-type="primary"
+    p-small="true"
+    (p-click)="navigateToCreate()">
+  </po-button>
+
+  <po-progress *ngIf="!products?.length && existProducts" p-indeterminate="true"></po-progress>
+
+  <po-table
+    *ngIf="products?.length"
+    [p-columns]="columns"
+    [p-items]="products">
+  </po-table>
+</po-page-default>

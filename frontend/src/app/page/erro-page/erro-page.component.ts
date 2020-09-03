@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-erro-page',
   templateUrl: './erro-page.component.html',
-  styleUrls: ['./erro-page.component.scss'],
+  styleUrls: ['./erro-page.component.scss']
 })
 export class ErroPageComponent implements OnInit {
   constructor(private router: Router) {}
@@ -12,6 +12,6 @@ export class ErroPageComponent implements OnInit {
   ngOnInit(): void {}
 
   goHome(): void {
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('/');
   }
 }

@@ -2,18 +2,28 @@
   "products": [
     {
       "id": 1,
-      "name": "Caneta BIC preta",
-      "price": 5.90
+      "name": "Arroz",
+      "price": 10
     },
     {
       "id": 2,
-      "name": "Notebook MAC Pro",
-      "price": 12000.00
+      "name": "Feijão",
+      "price": 5
     },
     {
       "id": 3,
-      "name": "iPhone SE 2",
-      "price": 4000.00
+      "name": "Batatinha",
+      "price": 1.25
+    },
+    {
+      "id": 4,
+      "name": "Macarrão",
+      "price": 8.5
+    },
+    {
+      "id": 5,
+      "name": "Água",
+      "price": 2.25
     }
   ]
 }
