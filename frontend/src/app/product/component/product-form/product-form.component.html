@@ -1,0 +1,40 @@
+<form [formGroup]="form">
+  <div class="po-row">
+    <div class="po-xl-6 po-lg-6 po-md-6 po-sm-12">
+      <po-input
+        formControlName="name"
+        p-auto-focus="true"
+        p-label="Nome"
+        name="name"
+        p-required="true">
+      </po-input>
+    </div>
+
+    <div class="po-xl-6 po-lg-6 po-md-6 po-sm-12">
+      <po-decimal
+        formControlName="price"
+        p-label="Preço"
+        p-icon="po-icon-finance-secure"
+        p-required="boolean"
+        p-decimals-length="2">
+      </po-decimal>
+    </div>
+  </div>
+</form>
+
+<div class="po-row buttons">
+  <div class="po-sm-12">
+    <po-button
+      class="item"
+      p-label="{{ !product?.id ? 'Salvar' : 'Editar' }}"
+      p-type="primary"
+      (p-click)="onSubmit()">
+    </po-button>
+    <po-button
+      class="item"
+      p-label="Cancelar"
+      p-type="default"
+      (p-click)="navigateToListProducts()">
+    </po-button>
+  </div>
+</div>

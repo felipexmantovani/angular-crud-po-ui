@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ProductPageModule } from './product-page.module';
+import { ProductPageModule } from './page/product-page.module';
 import { ProductRoutingModule } from './product-routing.module';
 
 @NgModule({

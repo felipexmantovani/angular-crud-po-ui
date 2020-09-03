@@ -1,37 +1,5 @@
 <po-page-default p-title="Novo Produto">
 
-  <div class="product-create">
-    <form [formGroup]="form">
-      <po-input
-        formControlName="name"
-        p-auto-focus="true"
-        p-label="Nome"
-        name="name"
-        p-required="true">
-      </po-input>
-
-      <po-decimal
-        formControlName="price"
-        p-label="Preço"
-        p-icon="po-icon-finance-secure"
-        p-required="boolean"
-        p-decimals-length="2">
-      </po-decimal>
-    </form>
-
-    <po-button
-      class="item"
-      p-label="Salvar"
-      p-type="primary"
-      (p-click)="onSubmit()">
-    </po-button>
-
-    <po-button
-      class="item"
-      p-label="Cancelar"
-      p-type="default"
-      (p-click)="navigateToListProducts()">
-    </po-button>
-  </div>
+  <app-product-form></app-product-form>
 
 </po-page-default>
