@@ -3,13 +3,16 @@
     p-label="Novo Produto"
     p-type="primary"
     p-small="true"
-    (p-click)="navigateToCreate()">
+    (p-click)="goToCreate()">
   </po-button>
 
-  <po-progress *ngIf="!products?.length && existProducts" p-indeterminate="true"></po-progress>
+  <po-progress *ngIf="!products?.length && productsExist" p-indeterminate="true"></po-progress>
 
   <po-table
     *ngIf="products?.length"
+    p-container="shadow"
+    [p-sort]="true"
+    [p-actions]="actions"
     [p-columns]="columns"
     [p-items]="products">
   </po-table>
