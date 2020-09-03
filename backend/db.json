@@ -14,6 +14,11 @@
       "id": 3,
       "name": "Macarrão",
       "price": 15
+    },
+    {
+      "id": 4,
+      "name": "Carro",
+      "price": 10000
     }
   ]
 }

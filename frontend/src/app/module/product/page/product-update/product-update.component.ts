@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PoNotificationService } from '@po-ui/ng-components';
+import { ExceptionService } from '../../../../core/service/exception/exception.service';
 import { PRODUCT_CONFIG } from '../../product-module.config';
 import { Product } from '../../product.interface';
 import { ProductService } from '../../service/product.service';
@@ -17,7 +18,8 @@ export class ProductUpdateComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
     private router: Router,
-    private poNotificationService: PoNotificationService
+    private poNotificationService: PoNotificationService,
+    private exceptionService: ExceptionService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class ProductUpdateComponent implements OnInit {
         }
       },
       (error) => {
-        console.log(error);
+        this.exceptionService.handleError(error);
       }
     );
   }

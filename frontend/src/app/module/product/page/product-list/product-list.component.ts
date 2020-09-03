@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PoNotificationService, PoTableAction, PoTableColumn, PoDialogService, PoDialogConfirmOptions } from '@po-ui/ng-components';
+import { PoDialogConfirmOptions, PoDialogService, PoNotificationService, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
+import { ExceptionService } from '../../../../core/service/exception/exception.service';
 import { PRODUCT_CONFIG } from '../../product-module.config';
 import { Product } from '../../product.interface';
 import { ProductService } from '../../service/product.service';
@@ -23,7 +24,8 @@ export class ProductListComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private poNotificationService: PoNotificationService,
-    private poDialogService: PoDialogService
+    private poDialogService: PoDialogService,
+    private exceptionService: ExceptionService
   ) {}
 
   ngOnInit(): void {
@@ -56,13 +58,18 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.productService.read().subscribe((products) => {
-      this.products = products;
-      if (!this.products.length) {
-        this.poNotificationService.information('Nenhum produto cadastrado!');
-        this.productsExist = false;
+    this.productService.read().subscribe(
+      (products) => {
+        this.products = products;
+        if (!this.products.length) {
+          this.poNotificationService.information('Nenhum produto cadastrado!');
+          this.productsExist = false;
+        }
+      },
+      (error) => {
+        this.exceptionService.handleError(error);
       }
-    });
+    );
   }
 
   goToCreate(): void {
@@ -81,9 +88,12 @@ export class ProductListComponent implements OnInit {
         this.productService.delete(product.id).subscribe(() => {
           this.poNotificationService.success('Produto excluído com sucesso!');
           this.getProducts();
+        },
+        (error) => {
+          this.exceptionService.handleError(error);
         });
       }
-    }
+    };
     this.poDialogService.confirm(options);
   }
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PoNotificationService } from '@po-ui/ng-components';
+import { ExceptionService } from '../../../../core/service/exception/exception.service';
 import { PRODUCT_CONFIG } from '../../product-module.config';
 import { Product } from '../../product.interface';
 import { ProductService } from '../../service/product.service';
@@ -21,7 +22,8 @@ export class ProductFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private productService: ProductService,
-    private poNotificationService: PoNotificationService
+    private poNotificationService: PoNotificationService,
+    private exceptionService: ExceptionService
   ) {}
 
   ngOnInit(): void {
@@ -58,10 +60,15 @@ export class ProductFormComponent implements OnInit {
   }
 
   create(): void {
-    this.productService.create(this.product).subscribe((product) => {
+    this.productService.create(this.product).subscribe(
+      (product) => {
       this.poNotificationService.success(`${product.name} cadastrado(a) com sucesso!`);
       this.navigateToListProducts();
-    });
+      },
+      (error) => {
+        this.exceptionService.handleError(error);
+      }
+    );
   }
 
   update(): void {
@@ -71,7 +78,7 @@ export class ProductFormComponent implements OnInit {
         this.navigateToListProducts();
       },
       (error) => {
-        console.log(error);
+        this.exceptionService.handleError(error);
       }
     );
   }
