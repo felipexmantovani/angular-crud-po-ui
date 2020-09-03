@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpStatusCodeEnum } from '../shared/enum/http-status-code';
+import { HttpStatusCodeEnum } from '../../shared/enum/http-status-code';
 import { ErroPageComponent } from './erro-page/erro-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 

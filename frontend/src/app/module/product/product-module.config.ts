@@ -1,4 +1,4 @@
-import { ModuleConfig } from '../shared/interface/module-config.interface';
+import { ModuleConfig } from '../../shared/interface/module-config.interface';
 
 const path: string = 'product';
 

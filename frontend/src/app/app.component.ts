@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PoMenuPanelItem } from '@po-ui/ng-components';
-import { PAGE_CONFIG } from './page/page-module.config';
-import { PRODUCT_CONFIG } from './product/product-module.config';
+import { PAGE_CONFIG } from './module/page/page-module.config';
+import { PRODUCT_CONFIG } from './module/product/product-module.config';
 
 @Component({
   selector: 'app-root',
