@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable, ErrorHandler } from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { HttpStatusCodeEnum } from '../../../shared/enum/http-status-code';
 
@@ -11,10 +11,11 @@ export class ExceptionService implements ErrorHandler {
     if (error instanceof HttpErrorResponse) {
       if (error.status === HttpStatusCodeEnum.NotFound) {
         this.poNotificationService.error(`#${HttpStatusCodeEnum.NotFound} - Servidor encontra-se indisponível!`);
+        return;
       } else if (error.status === HttpStatusCodeEnum.InternalServerError) {
         this.poNotificationService.error(`#${HttpStatusCodeEnum.NotFound} - Houve um erro interno no servidor!`);
+        return;
       }
-      return;
     }
     this.poNotificationService.error('Servidor encontra-se indisponível!');
   }
