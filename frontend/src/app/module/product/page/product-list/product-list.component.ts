@@ -83,7 +83,7 @@ export class ProductListComponent implements OnInit {
   delete(product: Product): void {
     let options: PoDialogConfirmOptions = {
       title: 'Atenção!',
-      message: 'Realmente deseja excluir o produto?',
+      message: `Realmente deseja excluir o produto ${product.name}?`,
       confirm: () => {
         this.productService.delete(product.id).subscribe(() => {
           this.poNotificationService.success('Produto excluído com sucesso!');
