@@ -8,17 +8,17 @@
     {
       "id": 2,
       "name": "Feijão",
-      "price": 20
-    },
-    {
-      "id": 3,
-      "name": "Macarrão",
       "price": 15
     },
     {
+      "id": 3,
+      "name": "Batata",
+      "price": 20
+    },
+    {
       "id": 4,
-      "name": "Carro",
-      "price": 10000
+      "name": "Macarrão",
+      "price": 25
     }
   ]
 }

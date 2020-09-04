@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { PoNotificationService } from '@po-ui/ng-components';
 import { ExceptionService } from '../../../../core/service/exception/exception.service';
+import { LoadingService } from '../../../../core/service/loading/loading.service';
 import { PRODUCT_CONFIG } from '../../product-module.config';
 import { Product } from '../../product.interface';
 import { ProductService } from '../../service/product.service';
@@ -23,7 +24,8 @@ export class ProductFormComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private poNotificationService: PoNotificationService,
-    private exceptionService: ExceptionService
+    private exceptionService: ExceptionService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -55,31 +57,36 @@ export class ProductFormComponent implements OnInit {
       return;
     }
     this.product = this.form.value;
-
     !this.product.id ? this.create() : this.update();
   }
 
   create(): void {
+    this.loadingService.show();
     this.productService.create(this.product).subscribe(
       (product) => {
-      this.poNotificationService.success(`${product.name} cadastrado(a) com sucesso!`);
-      this.navigateToListProducts();
+        this.poNotificationService.success(`${product.name} cadastrado(a) com sucesso!`);
+        this.navigateToListProducts();
       },
       (error) => {
+        this.loadingService.hide();
         this.exceptionService.handleError(error);
-      }
+      },
+      () => this.loadingService.hide()
     );
   }
 
   update(): void {
+    this.loadingService.show();
     this.productService.update(this.product).subscribe(
       (product) => {
         this.poNotificationService.success(`${product.name} editado(a) com sucesso!`);
         this.navigateToListProducts();
       },
       (error) => {
+        this.loadingService.hide();
         this.exceptionService.handleError(error);
-      }
+      },
+      () => this.loadingService.hide()
     );
   }
 

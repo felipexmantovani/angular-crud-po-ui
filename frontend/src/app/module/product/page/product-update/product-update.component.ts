@@ -5,6 +5,7 @@ import { ExceptionService } from '../../../../core/service/exception/exception.s
 import { PRODUCT_CONFIG } from '../../product-module.config';
 import { Product } from '../../product.interface';
 import { ProductService } from '../../service/product.service';
+import { LoadingService } from '../../../../core/service/loading/loading.service';
 
 @Component({
   selector: 'app-product-update',
@@ -19,7 +20,8 @@ export class ProductUpdateComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     private poNotificationService: PoNotificationService,
-    private exceptionService: ExceptionService
+    private exceptionService: ExceptionService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   getProduct(id: number): void {
+    this.loadingService.show();
     this.productService.readById(id).subscribe(
       (product) => {
         this.product = product;
@@ -37,8 +40,10 @@ export class ProductUpdateComponent implements OnInit {
         }
       },
       (error) => {
+        this.loadingService.hide();
         this.exceptionService.handleError(error);
-      }
+      },
+      () => this.loadingService.hide()
     );
   }
 }

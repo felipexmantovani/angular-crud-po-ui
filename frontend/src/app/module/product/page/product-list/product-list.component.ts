@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PoDialogConfirmOptions, PoDialogService, PoNotificationService, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { ExceptionService } from '../../../../core/service/exception/exception.service';
+import { LoadingService } from '../../../../core/service/loading/loading.service';
 import { PRODUCT_CONFIG } from '../../product-module.config';
 import { Product } from '../../product.interface';
 import { ProductService } from '../../service/product.service';
@@ -25,7 +26,8 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private poNotificationService: PoNotificationService,
     private poDialogService: PoDialogService,
-    private exceptionService: ExceptionService
+    private exceptionService: ExceptionService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +60,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
+    this.products = new Array<Product>();
     this.productService.read().subscribe(
       (products) => {
         this.products = products;
@@ -85,13 +88,18 @@ export class ProductListComponent implements OnInit {
       title: 'Atenção!',
       message: `Realmente deseja excluir o produto ${product.name}?`,
       confirm: () => {
-        this.productService.delete(product.id).subscribe(() => {
-          this.poNotificationService.success('Produto excluído com sucesso!');
-          this.getProducts();
-        },
-        (error) => {
-          this.exceptionService.handleError(error);
-        });
+        this.loadingService.show();
+        this.productService.delete(product.id).subscribe(
+          () => {
+            this.poNotificationService.success('Produto excluído com sucesso!');
+            this.getProducts();
+          },
+          (error) => {
+            this.loadingService.hide();
+            this.exceptionService.handleError(error);
+          },
+          () => this.loadingService.hide()
+        );
       }
     };
     this.poDialogService.confirm(options);
