@@ -1,4 +1,8 @@
 # angular-crud-po-ui
+<img src='https://raw.githubusercontent.com/felipexmantovani/angular-crud-po-ui/master/doc/screen1.gif?token=ABA2QJIPL6QGCDJCYA5VQUC7KQJDU' />
+
+---
+
 CRUD Angular criado após curso "Angular 9 - Essencial" da plataforma de cursos [@cod3rcursos](https://www.cod3r.com.br/).
 
 No layout foi utilizado o framework [PO UI](http://po-ui.io/).
