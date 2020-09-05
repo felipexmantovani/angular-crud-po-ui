@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   getMenus(): Array<PoMenuPanelItem> {
     return [
-      { label: 'Home', icon: 'po-icon po-icon-home', link: PAGE_CONFIG.pathFront },
+      { label: 'Home', icon: 'po-icon po-icon-home', link: '/' },
       { label: 'Produtos', icon: 'po-icon po-icon-archive', link: PRODUCT_CONFIG.pathFront }
     ];
   }

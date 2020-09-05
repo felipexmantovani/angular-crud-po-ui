@@ -6,7 +6,7 @@
     (p-click)="goToCreate()">
   </po-button>
 
-  <po-progress *ngIf="!products?.length && productsExist" p-indeterminate="true"></po-progress>
+  <po-progress *ngIf="!productsEndOfSearch" p-indeterminate="true"></po-progress>
 
   <po-table
     *ngIf="products?.length"

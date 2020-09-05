@@ -15,7 +15,7 @@ import { ProductService } from '../../service/product.service';
 export class ProductListComponent implements OnInit {
   products: Array<Product>;
 
-  productsExist: boolean = true;
+  productsEndOfSearch: boolean = false;
 
   columns: Array<PoTableColumn>;
 
@@ -61,17 +61,16 @@ export class ProductListComponent implements OnInit {
 
   getProducts(): void {
     this.products = new Array<Product>();
+    this.productsEndOfSearch = false;
     this.productService.read().subscribe(
       (products) => {
         this.products = products;
-        if (!this.products.length) {
-          this.poNotificationService.information('Nenhum produto cadastrado!');
-          this.productsExist = false;
-        }
+        !this.products.length ? this.poNotificationService.information('Nenhum produto cadastrado!') : undefined;
       },
       (error) => {
         this.exceptionService.handleError(error);
-      }
+      },
+      () => this.productsEndOfSearch = true
     );
   }
 
@@ -91,7 +90,7 @@ export class ProductListComponent implements OnInit {
         this.loadingService.show();
         this.productService.delete(product.id).subscribe(
           () => {
-            this.poNotificationService.success('Produto excluído com sucesso!');
+            this.poNotificationService.success(`${product.name} excluído(a) com sucesso!`);
             this.getProducts();
           },
           (error) => {

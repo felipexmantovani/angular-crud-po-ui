@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpStatusCodeEnum } from '../../shared/enum/http-status-code';
-import { ErroPageComponent } from './erro-page/erro-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { PageErroComponent } from './page-erro/page-erro.component';
+import { PageHomeComponent } from './page-home/page-home.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomePageComponent
+    component: PageHomeComponent
   },
   {
     path: 'erro',
     children: [
       {
         path: String(HttpStatusCodeEnum.NotFound),
-        component: ErroPageComponent
+        component: PageErroComponent
       }
     ]
   },
