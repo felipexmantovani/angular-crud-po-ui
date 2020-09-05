@@ -7,7 +7,7 @@ CRUD Angular criado após curso "Angular 9 - Essencial" da plataforma de cursos 
 
 No layout foi utilizado o framework [PO UI](http://po-ui.io/).
 
-## Start back-end
+## Back-end
 Para iniciar o back-end com JsonServer execute os comandos abaixo:
 
 ```
@@ -16,7 +16,7 @@ npm install
 npm start
 ```
 
-## Start front-end
+## Front-end
 Para iniciar o front-end execute os comandos abaixo:
 
 ```
