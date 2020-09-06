@@ -1,5 +1,5 @@
 # angular-crud-po-ui
-<img src='https://raw.githubusercontent.com/felipexmantovani/angular-crud-po-ui/master/doc/screen1.gif?token=ABA2QJIPL6QGCDJCYA5VQUC7KQJDU' />
+<img src='https://raw.githubusercontent.com/felipexmantovani/angular-crud-po-ui/master/doc/screen1.gif?token=ABA2QJIPL6QGCDJCYA5VQUC7KQJDU' style="width: 100%" />
 
 ---
 
