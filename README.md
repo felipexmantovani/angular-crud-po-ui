@@ -1,5 +1,7 @@
 # angular-crud-po-ui
-<img src='https://raw.githubusercontent.com/felipexmantovani/angular-crud-po-ui/master/doc/screen1.gif?token=ABA2QJIPL6QGCDJCYA5VQUC7KQJDU' style="width: 100%" />
+<div align="center">
+<img src='https://raw.githubusercontent.com/felipexmantovani/angular-crud-po-ui/master/doc/screen1.gif' style="min-width: 100%" />
+</div>
 
 ---
 
