@@ -25,8 +25,10 @@ export class ProductUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let { id } = this.activatedRoute.snapshot.params;
-    id ? this.getProduct(id) : undefined;
+    const { id } = this.activatedRoute.snapshot.params;
+    if (id) {
+      this.getProduct(id);
+    }
   }
 
   getProduct(id: number): void {

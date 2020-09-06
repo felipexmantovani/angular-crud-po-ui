@@ -65,7 +65,9 @@ export class ProductListComponent implements OnInit {
     this.productService.read().subscribe(
       (products) => {
         this.products = products;
-        !this.products.length ? this.poNotificationService.information('Nenhum produto cadastrado!') : undefined;
+        if (!this.products.length) {
+          this.poNotificationService.information('Nenhum produto cadastrado!');
+        }
       },
       (error) => {
         this.exceptionService.handleError(error);
@@ -83,7 +85,7 @@ export class ProductListComponent implements OnInit {
   }
 
   delete(product: Product): void {
-    let options: PoDialogConfirmOptions = {
+    const options: PoDialogConfirmOptions = {
       title: 'Atenção!',
       message: `Realmente deseja excluir o produto ${product.name}?`,
       confirm: () => {

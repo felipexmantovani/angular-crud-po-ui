@@ -5,7 +5,7 @@ const path: string = 'product';
 export const PRODUCT_CONFIG: ModuleConfig = {
   nameSingular: 'Produto',
   namePlural: 'Produtos',
-  path: path,
+  path,
   pathApi: '/products',
   pathFront: `/${path}`
 };

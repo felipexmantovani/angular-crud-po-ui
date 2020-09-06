@@ -39,7 +39,9 @@ export class ProductFormComponent implements OnInit {
       price: new FormControl(undefined, Validators.required)
     });
 
-    this.product ? this.formLoad() : undefined;
+    if (this.product) {
+      this.formLoad();
+    }
   }
 
   formLoad(): void {
@@ -49,7 +51,7 @@ export class ProductFormComponent implements OnInit {
   onSubmit(): void {
     if (this.form.invalid) {
       this.poNotificationService.error('Verifique o formulário!');
-      for (let control in this.form.controls) {
+      for (const control in this.form.controls) {
         if (this.form.get(control).invalid) {
           this.form.get(control).markAsDirty();
         }
