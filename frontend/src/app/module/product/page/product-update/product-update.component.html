@@ -1,5 +1,9 @@
 <po-page-default p-title="Editar Produto">
 
-  <app-product-form *ngIf="product" [product]="product"></app-product-form>
+  <app-product-form *ngIf="product$ | async as product; else progress" [product]="product"></app-product-form>
+
+  <ng-template #progress>
+    <po-progress p-indeterminate="true"></po-progress>
+  </ng-template>
 
 </po-page-default>

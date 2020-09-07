@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PoDialogConfirmOptions, PoDialogService, PoNotificationService, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
+import { Observable } from 'rxjs';
 import { ExceptionService } from '../../../../core/service/exception/exception.service';
 import { LoadingService } from '../../../../core/service/loading/loading.service';
 import { PRODUCT_CONFIG } from '../../product-module.config';
@@ -13,9 +14,7 @@ import { ProductService } from '../../service/product.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products: Array<Product>;
-
-  productsEndOfSearch: boolean = false;
+  products$: Observable<Array<Product>>;
 
   columns: Array<PoTableColumn>;
 
@@ -60,20 +59,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.products = new Array<Product>();
-    this.productsEndOfSearch = false;
-    this.productService.read().subscribe(
-      (products) => {
-        this.products = products;
-        if (!this.products.length) {
-          this.poNotificationService.information('Nenhum produto cadastrado!');
-        }
-      },
-      (error) => {
-        this.exceptionService.handleError(error);
-      },
-      () => this.productsEndOfSearch = true
-    );
+    this.products$ = this.productService.read();
   }
 
   goToCreate(): void {

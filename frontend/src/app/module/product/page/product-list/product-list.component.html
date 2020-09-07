@@ -6,14 +6,16 @@
     (p-click)="goToCreate()">
   </po-button>
 
-  <po-progress *ngIf="!productsEndOfSearch" p-indeterminate="true"></po-progress>
-
   <po-table
-    *ngIf="products?.length"
+    *ngIf="products$ | async as products; else progress"
     p-container="shadow"
     [p-sort]="true"
     [p-actions]="actions"
     [p-columns]="columns"
     [p-items]="products">
   </po-table>
+
+  <ng-template #progress>
+    <po-progress p-indeterminate="true"></po-progress>
+  </ng-template>
 </po-page-default>

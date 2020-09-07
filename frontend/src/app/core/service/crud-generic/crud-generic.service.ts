@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { delay, take } from 'rxjs/operators';
 
-interface CrudGenericObject {
+interface CrudGeneric {
   id: number;
 }
 
@@ -16,15 +16,15 @@ export class CrudGenericService<T> {
   }
 
   read(): Observable<Array<T>> {
-    return this.httpClient.get<Array<T>>(this.api).pipe(take(1), delay(500));
+    return this.httpClient.get<Array<T>>(this.api).pipe(delay(500));
   }
 
   readById(id: number): Observable<T> {
-    return this.httpClient.get<T>(`${this.api}/${id}`).pipe(take(1), delay(250));
+    return this.httpClient.get<T>(`${this.api}/${id}`).pipe(delay(250));
   }
 
   update(object: T): Observable<T> {
-    const id = ((object as unknown) as CrudGenericObject).id;
+    const id = ((object as unknown) as CrudGeneric).id;
     return this.httpClient.put<T>(`${this.api}/${id}`, object).pipe(take(1), delay(500));
   }
 
